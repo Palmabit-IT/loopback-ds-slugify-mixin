@@ -1,0 +1,22 @@
+{
+  "name": "@palmabit/loopback-ds-slugify-mixin",
+  "version": "0.0.1",
+  "description": "A mixin to automatically generate created and updated slug for loopback Models",
+  "scripts": {},
+  "keywords": [
+    "loopback",
+    "strongloop",
+    "mixin",
+    "slugify"
+  ],
+  "author": "Palmabit",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Palmabit-IT/loopback-ds-slugify-mixin.git"
+  },
+  "dependencies": {
+    "slugify": "^1.3.0"
+  },
+  "devDependencies": {}
+}
