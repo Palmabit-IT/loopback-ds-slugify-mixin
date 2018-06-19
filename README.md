@@ -1,4 +1,4 @@
-INSTALL
+Install
 =============
 
 ```bash
@@ -54,3 +54,7 @@ To use with your Models add the `mixins` attribute to the definition object of y
   }
   }
 ```
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
