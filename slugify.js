@@ -2,7 +2,7 @@
 
 const slugify = require('slugify');
 
-module.exports = function(Model, options) {
+module.exports = function(Model, options = {}) {
   const {
     slugifyOptions = {},
     slugifiedField = 'slug',
