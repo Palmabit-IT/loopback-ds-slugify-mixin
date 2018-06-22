@@ -59,5 +59,9 @@ To use with your Models add the `mixins` attribute to the definition object of y
 - **slugifiedField**: [String] Optional. Default is "slug". Support dot notation (ex. "foo.bar") for nested
 - **fieldToSlugify**: [String] Required. Support dot notation (ex. "foo.bar") for nested
 
+# Changelog
+
+[Changelog File](CHANGELOG)
+
 # License
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
