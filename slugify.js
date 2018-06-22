@@ -1,8 +1,10 @@
 'use strict';
 
 const slugify = require('slugify');
+const get = require('lodash').get
+const set = require('lodash').set
 
-module.exports = function(Model, options = {}) {
+module.exports = function (Model, options = {}) {
   const {
     slugifyOptions = {},
     slugifiedField = 'slug',
@@ -10,11 +12,16 @@ module.exports = function(Model, options = {}) {
   } = options;
 
   Model.observe('before save', function event(ctx, next) {
-    if (ctx.isNewInstance) {
-      if (ctx.instance[fieldToSlugify]) {
-        ctx.instance[slugifiedField] = slugify(ctx.instance[fieldToSlugify], slugifyOptions);
+
+    if (typeof slugifiedField === 'string' && typeof fieldToSlugify === 'string') {
+
+      const field = get(ctx.instance, fieldToSlugify);
+
+      if (ctx.isNewInstance && field) {
+        set(ctx.instance, slugifiedField, slugify(field, slugifyOptions));
       }
     }
+    
     next();
   });
 };

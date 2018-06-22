@@ -93,4 +93,102 @@ describe('loopback-ds-slugify-mixin', () => {
     slugify(Model, options)
   })
 
+  it('should slugify newIstance with a custom nested fied', done => {
+    const ctx = {
+      isNewInstance: true,
+      instance: {
+        post: {
+          author: {
+            name: 'John Drive'
+          }
+        }
+      }
+    }
+    const expected = {
+      isNewInstance: true,
+      instance: { slug: 'john-drive', post: { author: { name: 'John Drive' } } }
+    }
+    const next = () => {
+      expect(ctx).to.be.deep.eq(expected)
+      done()
+    }
+    const cb = (hook, cb) => cb(ctx, next)
+    const options = {
+      fieldToSlugify: 'post.author.name',
+      slugifiedField: 'slug',
+      slugifyOptions: { 'lower': true }
+    }
+    const Model = {
+      observe: cb
+    }
+    slugify(Model, options)
+  })
+
+  it('should slugify newIstance in a custom nested fied', done => {
+    const ctx = {
+      isNewInstance: true,
+      instance: {
+        post: {
+          author: {
+            name: 'John Drive'
+          }
+        }
+      }
+    }
+    const expected = {
+      isNewInstance: true,
+      instance: {
+        post: {
+          foo: [
+            {
+              bar: {
+                slug: 'john-drive'
+              }
+            }
+          ],
+          author: { name: 'John Drive' }
+        }
+      }
+    }
+    const next = () => {
+      expect(ctx).to.be.deep.eq(expected)
+      done()
+    }
+    const cb = (hook, cb) => cb(ctx, next)
+    const options = {
+      fieldToSlugify: 'post.author.name',
+      slugifiedField: 'post.foo[0].bar.slug',
+      slugifyOptions: { 'lower': true }
+    }
+    const Model = {
+      observe: cb
+    }
+    slugify(Model, options)
+  })
+
+  it('should NOT slugify if field doesn\'t exists', done => {
+    const ctx = {
+      isNewInstance: true,
+      instance: { title: 'title' }
+    }
+    const expected = {
+      isNewInstance: true,
+      instance: { title: 'title' }
+    }
+    const next = () => {
+      expect(ctx).to.be.deep.eq(expected)
+      done()
+    }
+    const cb = (hook, cb) => cb(ctx, next)
+    const options = {
+      fieldToSlugify: { something: 'not exists' },
+      slugifiedField: { something: 'not exists' },
+      slugifyOptions: { 'lower': true }
+    }
+    const Model = {
+      observe: cb
+    }
+    slugify(Model, options)
+  })
+
 })

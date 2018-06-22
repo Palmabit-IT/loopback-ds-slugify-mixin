@@ -43,7 +43,7 @@ To use with your Models add the `mixins` attribute to the definition object of y
     },
     "mixins": {
     "Slugify": {
-      "slugifyOptions": { // Optional. See https://github.com/simov/slugify for more infos
+      "slugifyOptions": { 
         "replacement": "=",
         "remove": null,
         "lower": true
@@ -55,6 +55,8 @@ To use with your Models add the `mixins` attribute to the definition object of y
   }
 ```
 
-## License
+- **slugifyOptions**: Optional. See https://github.com/simov/slugify for more infos
+- **slugifiedField**: [String] Optional. Default is "slug". In dot notation
+- **fieldToSlugify**: [String] Required. In dot notation.
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
