@@ -1,12 +1,13 @@
-Install
+loopback-ds-slugify-mixin
 =============
+
+# Install
 
 ```bash
   npm i @palmabit/loopback-ds-slugify-mixin --save
 ```
 
-SERVER CONFIG
-=============
+# Server Config
 
 Add the `mixins` property to your `server/model-config.json`:
 
@@ -28,8 +29,7 @@ Add the `mixins` property to your `server/model-config.json`:
 }
 ```
 
-MODEL CONFIG
-=============
+# Model Config
 
 To use with your Models add the `mixins` attribute to the definition object of your model config.
 
@@ -48,15 +48,16 @@ To use with your Models add the `mixins` attribute to the definition object of y
         "remove": null,
         "lower": true
       },
-      "slugifiedField": "slug", // Optional. By default is "slug"
-      "fieldToSlugify": "name" // Required
+      "slugifiedField": "slug",
+      "fieldToSlugify": "name"
     }
   }
   }
 ```
 
 - **slugifyOptions**: Optional. See https://github.com/simov/slugify for more infos
-- **slugifiedField**: [String] Optional. Default is "slug". In dot notation
-- **fieldToSlugify**: [String] Required. In dot notation.
+- **slugifiedField**: [String] Optional. Default is "slug". Support dot notation (ex. "foo.bar") for nested
+- **fieldToSlugify**: [String] Required. Support dot notation (ex. "foo.bar") for nested
 
+# License
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
