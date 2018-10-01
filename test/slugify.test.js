@@ -191,4 +191,62 @@ describe('loopback-ds-slugify-mixin', () => {
     slugify(Model, options)
   })
 
+  it('should add suffix timestamp', done => {
+    const ctx = {
+      isNewInstance: true,
+      instance: {
+        title: 'lorem ipsum'
+      }
+    }
+
+    const next = () => {
+      expect(ctx.isNewInstance).to.be.eq(true)
+      expect(ctx.instance.title).to.be.eq('lorem ipsum')
+      const arr = ctx.instance.slug.split('-')
+      const timestamp = arr[arr.length - 1]
+      expect(Number(timestamp)).not.to.be.NaN
+      done()
+    }
+
+    const cb = (hook, cb) => cb(ctx, next)
+    const options = {
+      fieldToSlugify: 'title',
+      suffixTimestamp: true
+    }
+    const Model = {
+      observe: cb
+    }
+    slugify(Model, options)
+  })
+
+  it('should add suffix timestamp with custom separator', done => {
+    const ctx = {
+      isNewInstance: true,
+      instance: {
+        title: 'lorem ipsum'
+      }
+    }
+    const options = {
+      slugifyOptions: {
+        replacement: '_',
+      },
+      fieldToSlugify: 'title',
+      suffixTimestamp: true
+    }
+    const next = () => {
+      expect(ctx.isNewInstance).to.be.eq(true)
+      expect(ctx.instance.title).to.be.eq('lorem ipsum')
+      const arr = ctx.instance.slug.split('_')
+      const timestamp = arr[arr.length - 1]
+      expect(Number(timestamp)).not.to.be.NaN
+      done()
+    }
+
+    const cb = (hook, cb) => cb(ctx, next)
+    const Model = {
+      observe: cb
+    }
+    slugify(Model, options)
+  })
+
 })
