@@ -9,6 +9,7 @@ module.exports = function (Model, options = {}) {
     slugifyOptions = {},
     slugifiedField = 'slug',
     fieldToSlugify,
+    suffixTimestamp,
   } = options;
 
   Model.observe('before save', function event(ctx, next) {
@@ -18,10 +19,15 @@ module.exports = function (Model, options = {}) {
       const field = get(ctx.instance, fieldToSlugify);
 
       if (ctx.isNewInstance && field) {
-        set(ctx.instance, slugifiedField, slugify(field, slugifyOptions));
+        let slug = slugify(field, slugifyOptions);
+        if (suffixTimestamp) {
+          const separator = slugifyOptions && slugifyOptions.replacement || '-'
+          slug = `${slug}${separator}${new Date().getTime()}`
+        }
+        set(ctx.instance, slugifiedField, slug);
       }
     }
-    
+
     next();
   });
 };
