@@ -46,7 +46,8 @@ To use with your Models add the `mixins` attribute to the definition object of y
       "slugifyOptions": { 
         "replacement": "=",
         "remove": null,
-        "lower": true
+        "lower": true,
+        "suffixTimestamp": true
       },
       "slugifiedField": "slug",
       "fieldToSlugify": "name"
@@ -58,6 +59,7 @@ To use with your Models add the `mixins` attribute to the definition object of y
 - **slugifyOptions**: Optional. See https://github.com/simov/slugify for more infos
 - **slugifiedField**: [String] Optional. Default is "slug". Support dot notation (ex. "foo.bar") for nested
 - **fieldToSlugify**: [String] Required. Support dot notation (ex. "foo.bar") for nested
+- **suffixTimestamp**: [Boolean] Optional
 
 # Changelog
 
