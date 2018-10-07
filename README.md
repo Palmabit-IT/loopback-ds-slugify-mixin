@@ -63,7 +63,7 @@ To use with your Models add the `mixins` attribute to the definition object of y
 
 # Changelog
 
-[Changelog File](CHANGELOG)
+[Changelog File](CHANGELOG.md)
 
 # License
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
