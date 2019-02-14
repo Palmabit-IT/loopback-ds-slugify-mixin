@@ -1,6 +1,6 @@
 {
   "name": "@palmabit/loopback-ds-slugify-mixin",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A mixin to generate slug for loopback Models",
   "scripts": {
     "test": "mocha test/*.test.js"
@@ -18,11 +18,11 @@
     "url": "https://github.com/Palmabit-IT/loopback-ds-slugify-mixin.git"
   },
   "dependencies": {
-    "lodash": "^4.17.10",
-    "slugify": "^1.3.0"
+    "lodash": "^4.17.11",
+    "slugify": "^1.3.4"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "mocha": "^5.2.0"
   }
 }
